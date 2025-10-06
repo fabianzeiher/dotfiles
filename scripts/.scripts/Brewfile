@@ -1,0 +1,108 @@
+tap "felixkratz/formulae"
+tap "homebrew/bundle"
+tap "nikitabobko/tap"
+tap "osx-cross/arm"
+tap "osx-cross/avr"
+tap "qmk/qmk"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Backend processor for BibLaTeX
+brew "biber"
+# Object-file caching compiler wrapper
+brew "ccache"
+# C parser in Python
+brew "pycparser"
+# C Foreign Function Interface for Python
+brew "cffi"
+# Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
+brew "clang-format"
+# Cross-platform make
+brew "cmake"
+# Good-lookin' diffs with diff-highlight and more
+brew "diff-so-fancy"
+# Text processing system for reStructuredText
+brew "docutils"
+# Generate documentation for several programming languages
+brew "doxygen"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU compiler collection
+brew "gcc"
+# Library for processing command-line flags
+brew "gflags"
+# GitHub command-line tool
+brew "gh"
+# Git extension for versioning large files
+brew "git-lfs"
+# Numerical library for C and C++
+brew "gsl"
+# Kubernetes package manager
+brew "helm"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Graphical front-end for GCC's coverage testing tool (gcov)
+brew "lcov"
+# Run a Kubernetes cluster locally
+brew "minikube"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# Port scanning utility for large networks
+brew "nmap"
+# Package for scientific computing with Python
+brew "numpy"
+# Manage multiple Node.js versions
+brew "nvm"
+# Development kit for the Java programming language
+brew "openjdk"
+# Shell command parallelization utility
+brew "parallel"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# Theme for zsh
+brew "powerlevel10k"
+# Python version management
+brew "pyenv"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
+# Perl-powered file rename script with many helpful built-ins
+brew "rename"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Generate scripting interfaces to C/C++ code
+brew "swig"
+# Free software distribution for the TeX typesetting system
+brew "texlive"
+# Terminal multiplexer
+brew "tmux"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Tool for creating isolated virtual python environments
+brew "virtualenv"
+# Internet file retriever
+brew "wget"
+# Modern, portable C++ wrappers for SIMD intrinsics
+brew "xsimd"
+# Real-time type-ahead completion for Zsh
+brew "zsh-autocomplete"
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
+# A window border system for macOS
+brew "felixkratz/formulae/borders"
+# Quantum Mechanical Keyboard (QMK) Firmware
+brew "qmk/qmk/qmk"
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "aerospace"
