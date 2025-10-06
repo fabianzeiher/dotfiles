@@ -4,7 +4,9 @@ cd ~
 echo ">>>>>Installing homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
-brew bundle --file=~/.dotfiles/Brewfile
+
+echo ">>>>>Installing core packages"
+brew install stow tmux fzf fd bat starship ripgrep zsh-autosuggestions zsh-syntax-highlighting
 
 echo ">>>>>Setting up zsh"
 stow ~/.dotfiles/zsh

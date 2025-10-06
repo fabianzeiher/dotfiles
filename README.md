@@ -2,9 +2,22 @@
 
 ## Creating and using homebrew bundles
 
-`brew bundle dump --describe`
+create Brewfile
+
+```bash
+brew bundle dump --describe
+```
+
+install from Brewfile
+
+```bash
+brew bundle --file=~/.dotfiles/Brewfile
+```
 
 ## Setup on a new machine
 
 Automatic setup with tmux and vim for MacOS:
-`~/dotfiles/setup.sh`
+
+```bash
+~/dotfiles/setup.sh
+````
