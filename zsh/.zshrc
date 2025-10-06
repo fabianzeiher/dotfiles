@@ -78,7 +78,6 @@ plugins=(
   colored-man-pages
   copypath
   copybuffer
-  # dircycle
   zsh-interactive-cd
 )
 
@@ -93,12 +92,12 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -110,7 +109,6 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME"
 
 # bat theme
 export BAT_THEME="Catppuccin Mocha"
@@ -138,17 +136,13 @@ source <(fzf --zsh)
 
 # Dependencies for ORB development
 # Removed because it locks you into that specific neo4j DBMS
-export NEO4J_HOME=/Users/fabian/Code/orb_dependency/neo4j-community-5.20.0
+export NEO4J_HOME=$HOME/Code/orb_dependency/neo4j-community-5.20.0
 export PATH=$NEO4J_HOME/bin:$PATH
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/fabian/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/fabian/google-cloud-sdk/path.zsh.inc'; fi
-
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/fabian/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/fabian/google-cloud-sdk/completion.zsh.inc'; fi
-
-# this should be sourced as late as possible
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # keybindings
 # fussy search for windows from the terminal
@@ -166,13 +160,12 @@ bindkey '^[[A' .up-line-or-search
 bindkey '^[[B' .down-line-or-search
 bindkey '^[OA' .up-line-or-search
 bindkey '^[OB' .down-line-or-search
-# re-bind dircycle for vim style
-# bindkey '^H' insert-cycledleft
-# bindkey '^L' insert-cycledright
-# bindkey '^K' insert-cycledup
-# bindkey '^J' insert-cycleddown
+
 # # overwrite keybind for entering vim editing mode
 bindkey '\C-e' edit-command-line
+
+# this should be sourced as late as possible
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Custom prompt
 eval "$(starship init zsh)"

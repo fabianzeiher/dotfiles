@@ -38,6 +38,8 @@ brew "gflags"
 brew "gh"
 # Git extension for versioning large files
 brew "git-lfs"
+# Render markdown on the CLI
+brew "glow"
 # Numerical library for C and C++
 brew "gsl"
 # Kubernetes package manager
@@ -68,8 +70,6 @@ brew "openjdk"
 brew "parallel"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
-# Theme for zsh
-brew "powerlevel10k"
 # Python version management
 brew "pyenv"
 # Interpreted, interactive, object-oriented programming language
@@ -80,6 +80,10 @@ brew "python@3.11"
 brew "rename"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
 # Generate scripting interfaces to C/C++ code
 brew "swig"
 # Free software distribution for the TeX typesetting system
