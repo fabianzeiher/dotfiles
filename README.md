@@ -6,5 +6,5 @@
 
 ## Setup on a new machine
 
-Automatic setup with tmux and vim:
+Automatic setup with tmux and vim for MacOS:
 `~/dotfiles/setup.sh`
