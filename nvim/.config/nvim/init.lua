@@ -687,7 +687,29 @@ require("lazy").setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        pyright = {},
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              analysis = {
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "openFilesOnly",
+                autoSearchPath = true,
+                typeCheckingMode = "off",
+                inlayHints = {
+                  callArgumentNames = true,
+                },
+                -- extraPaths = {
+                --     '...',
+                --     '...',
+                -- },
+              },
+              -- python = {
+              --   venvPath = '/path/to/venv',
+              --   venv = 'venv',
+              -- },
+            },
+          },
+        },
         -- pylsp = {}, -- This was sending tons of linter warnings as well
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -731,7 +753,7 @@ require("lazy").setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         "stylua", -- Used to format Lua code
-        "markdownlint",
+        -- "markdownlint",
         "ruff", -- Used to provide linting and formatting for python
         "debugpy", -- Used to debug python code
       })
