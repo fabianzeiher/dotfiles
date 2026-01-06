@@ -9,9 +9,9 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = [
-  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=3.0',
-]
+# after-startup-command = [
+#   'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=3.0',
+# ]
 
 # Start AeroSpace at login
 start-at-login = false
@@ -141,11 +141,11 @@ run = 'layout floating'
     ctrl-alt-cmd-m = 'resize smart +50'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-    ctrl-alt-u = 'workspace 1'
-    ctrl-alt-i = 'workspace 2'
-    ctrl-alt-o = 'workspace 3'
-    ctrl-alt-p = 'workspace 4'
-    ctrl-alt-y = 'workspace 5'
+    ctrl-alt-y = 'workspace 1'
+    ctrl-alt-u = 'workspace 2'
+    ctrl-alt-i = 'workspace 3'
+    ctrl-alt-o = 'workspace 4'
+    ctrl-alt-p = 'workspace 5'
     # alt-6 = 'workspace 6'
     # alt-7 = 'workspace 7'
     # alt-8 = 'workspace 8'
@@ -174,11 +174,11 @@ run = 'layout floating'
     # alt-z = 'workspace Z'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-    ctrl-alt-cmd-u = 'move-node-to-workspace 1'
-    ctrl-alt-cmd-i = 'move-node-to-workspace 2'
-    ctrl-alt-cmd-o = 'move-node-to-workspace 3'
-    ctrl-alt-cmd-p = 'move-node-to-workspace 4'
-    ctrl-alt-cmd-y = 'move-node-to-workspace 5'
+    ctrl-alt-cmd-y = 'move-node-to-workspace 1'
+    ctrl-alt-cmd-u = 'move-node-to-workspace 2'
+    ctrl-alt-cmd-i = 'move-node-to-workspace 3'
+    ctrl-alt-cmd-o = 'move-node-to-workspace 4'
+    ctrl-alt-cmd-p = 'move-node-to-workspace 5'
     # alt-shift-6 = 'move-node-to-workspace 6'
     # alt-shift-7 = 'move-node-to-workspace 7'
     # alt-shift-8 = 'move-node-to-workspace 8'
