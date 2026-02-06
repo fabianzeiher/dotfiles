@@ -146,7 +146,7 @@ if [ -f '/Users/fabian/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/fa
 
 # keybindings
 # fussy search for windows from the terminal
-ff() {
+fw() {
     aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
 }
 

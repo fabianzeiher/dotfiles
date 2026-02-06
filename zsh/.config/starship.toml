@@ -13,6 +13,9 @@ style = "bold blue"
 [battery]
 disabled = false
 
+[[battery.display]]
+threshold = 20
+
 [aws]
 symbol = "aws "
 disabled = true
@@ -121,7 +124,7 @@ symbol = "nodejs "
 
 [memory_usage]
 symbol = "memory "
-disabled = false
+disabled = true
 
 [meson]
 symbol = "meson "

@@ -1,0 +1,6 @@
+font-family = "FiraCode Nerd Font Mono"
+font-size = 14
+theme = "Catppuccin Mocha"
+window-padding-balance = true
+shell-integration-features = ssh-terminfo,ssh-env
+
