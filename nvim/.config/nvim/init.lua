@@ -159,7 +159,7 @@ vim.o.inccommand = "split"
 vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 999
+vim.o.scrolloff = 7
 
 -- Tabs vs Space
 vim.o.shiftwidth = 2
@@ -208,6 +208,12 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+--
+
+-- Extra keybind for closing tabs (useful for neogit for example)
+vim.api.nvim_set_keymap("n", "gtq", ":tabclose<CR>", { desc = "Close the current tab", })
+vim.api.nvim_set_keymap("n", "gtn", ":tabnext<CR>", { desc = "Go to the next tab", })
+vim.api.nvim_set_keymap("n", "gtp", ":tabprevious<CR>", { desc = "Go to the previous tab" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -697,30 +703,31 @@ require("lazy").setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        basedpyright = {
-          settings = {
-            basedpyright = {
-              analysis = {
-                useLibraryCodeForTypes = true,
-                diagnosticMode = "openFilesOnly",
-                autoSearchPath = true,
-                typeCheckingMode = "off",
-                inlayHints = {
-                  callArgumentNames = true,
-                },
-                -- extraPaths = {
-                --     '...',
-                --     '...',
-                -- },
-              },
-              -- python = {
-              --   venvPath = '/path/to/venv',
-              --   venv = 'venv',
-              -- },
-            },
-          },
-        },
-        -- pylsp = {}, -- This was sending tons of linter warnings as well
+        -- basedpyright = {
+        --   settings = {
+        --     basedpyright = {
+        --       analysis = {
+        --         useLibraryCodeForTypes = true,
+        --         diagnosticMode = "openFilesOnly",
+        --         autoSearchPath = true,
+        --         typeCheckingMode = "off",
+        --         inlayHints = {
+        --           callArgumentNames = true,
+        --         },
+        --         -- extraPaths = {
+        --         --     '...',
+        --         --     '...',
+        --         -- },
+        --       },
+        --       -- python = {
+        --       --   venvPath = '/path/to/venv',
+        --       --   venv = 'venv',
+        --       -- },
+        --     },
+        --   },
+        -- },
+        zuban = {},
+        -- pylsp = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -801,7 +808,7 @@ require("lazy").setup({
       },
     },
     opts = {
-      notify_on_error = false,
+      notify_on_error = true,
       -- Format on save is disabled for now!!!
       -- format_on_save = function(bufnr)
       --   -- Disable "format_on_save lsp_fallback" for languages that don't
@@ -927,50 +934,6 @@ require("lazy").setup({
     },
   },
 
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("catppuccin").setup({
-        flavour = "mocha",
-        auto_integrations = false, -- automatically lets lazy load integrations to other plugins
-      })
-    end,
-  },
-
-  {
-    "ellisonleao/gruvbox.nvim",
-    priority = 999,
-    config = true,
-    opts = {
-      contrast = "hard",
-    },
-  },
-
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    "folke/tokyonight.nvim",
-    priority = 998, -- Make sure to load this before all the other start plugins.
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("tokyonight").setup({
-        styles = {
-          comments = { italic = true }, -- Disable italics in comments
-        },
-      })
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- vim.cmd.colorscheme("tokyonight-night")
-    end,
-  },
-
   -- Highlight todo, notes, etc in comments
   {
     "folke/todo-comments.nvim",
@@ -1055,6 +1018,144 @@ require("lazy").setup({
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
+  -- Adds hints at closing brackets (useless for python)
+  -- {
+  --   'code-biscuits/nvim-biscuits',
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --   },
+  -- },
+
+  {
+    "bkad/CamelCaseMotion",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>iw", "<Plug>CamelCaseMotion_iw", mode = "", desc = "CamelCaseMotion_[iw]" },
+      { "<leader>w", "<Plug>CamelCaseMotion_w", mode = "", desc = "CamelCaseMotion_[w]" },
+    },
+  },
+
+  {
+    "NeogitOrg/neogit",
+    lazy = true,
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+
+      -- Only one of these is needed.
+      -- "sindrets/diffview.nvim",        -- optional
+      "esmuellert/codediff.nvim", -- optional
+
+      -- Only one of these is needed.
+      "nvim-telescope/telescope.nvim",
+    },
+    cmd = "Neogit",
+    keys = {
+      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
+    },
+  },
+
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {
+      modes = {
+        search = {
+          enabled = false,
+        },
+      },
+    },
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      -- I thing visual + s and visual + S requires less brain power and is equally useful
+      -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
+    },
+  },
+
+  -- COLOR SCHEMES
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require("catppuccin").setup({
+        flavour = "mocha",
+        auto_integrations = true, -- automatically lets lazy load integrations to other plugins
+        custom_highlights = function(colors)
+          return {
+            -- Override Flash highlight groups
+            FlashLabel = { bg = colors.red, fg = colors.base, bold = true },
+            FlashMatch = { bg = colors.blue, fg = colors.base },
+          }
+        end,
+      })
+
+      vim.cmd.colorscheme("catppuccin")
+    end,
+  },
+
+  -- {
+  --   "ellisonleao/gruvbox.nvim",
+  --   priority = 999,
+  --   config = true,
+  --   opts = {
+  --     contrast = "hard",
+  --   },
+  --   config = function ()
+  --     vim.cmd.colorscheme("gruvbox")
+  --   end
+  -- },
+
+  -- { -- You can easily change to a different colorscheme.
+  --   -- Change the name of the colorscheme plugin below, and then
+  --   -- change the command in the config to whatever the name of that colorscheme is.
+  --   --
+  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  --   "folke/tokyonight.nvim",
+  --   priority = 998, -- Make sure to load this before all the other start plugins.
+  --   config = function()
+  --     ---@diagnostic disable-next-line: missing-fields
+  --     require("tokyonight").setup({
+  --       styles = {
+  --         comments = { italic = true }, -- Disable italics in comments
+  --       },
+  --       on_highlights = function(hl, c)
+  --         hl.LspReferenceRead = "Underlined"
+  --       end,
+  --     })
+  --
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     vim.cmd.colorscheme("tokyonight-night")
+  --   end,
+  -- },
+
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
@@ -1102,9 +1203,6 @@ require("lazy").setup({
     },
   },
 })
-
--- Load the colorscheme here.
-vim.cmd.colorscheme("catppuccin-mocha")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
