@@ -702,7 +702,17 @@ require("lazy").setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+              },
+              staticcheck = true,
+              gofumpt = true,
+            },
+          },
+        },
         -- basedpyright = {
         --   settings = {
         --     basedpyright = {
@@ -773,6 +783,9 @@ require("lazy").setup({
         -- "markdownlint",
         "ruff", -- Used to provide linting and formatting for python
         "debugpy", -- Used to debug python code
+        "goimports", -- Used to manage and format Go import statements
+        "gofumpt", -- Used to enforce stricter formatting for Go code
+        "golangci-lint", -- Used to lint Go code and enforce best practices
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -827,6 +840,7 @@ require("lazy").setup({
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff-format" },
+        go = { "goimports", "gofumpt" },
         -- Conform can also run multiple formatters sequentially
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -986,6 +1000,10 @@ require("lazy").setup({
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = {
+        "go",
+        "gomod",
+        "gowork",
+        "gosum",
         "python",
         "bash",
         "c",
